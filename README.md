@@ -24,3 +24,16 @@ config.middleware.use Rack::Prerendercloud
 
 
 ```
+
+### Bots only
+
+We don't recommend this setting due to:
+
+1. potential cloaking penalties
+2. missing out on performance gains of prerendering all traffic
+
+but it's here if you want it:
+
+```ruby
+config.middleware.use Rack::Prerendercloud, bots_only: true
+```
