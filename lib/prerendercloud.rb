@@ -17,7 +17,8 @@ module Rack
           "public-key-pins",
           "x-frame-options",
           "x-xss-protection",
-          "x-content-type-options"
+          "x-content-type-options",
+          "location"
         ];
       end
 

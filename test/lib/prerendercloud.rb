@@ -14,14 +14,14 @@ describe Rack::Prerendercloud do
   end
 
 
-  it "should return a prerendered response for a crawler with the returned status code and headers" do
+  it "should preserve status code and location header" do
     request = Rack::MockRequest.env_for "/", "HTTP_USER_AGENT" => bot
     stub_request(:get, @prerender.build_api_url(request)).with(:headers => { 'User-Agent' => bot }).to_return(:body => "<html></html>", :status => 301, :headers => { 'Location' => 'http://google.com'})
     response = Rack::Prerendercloud.new(@app).call(request)
 
     assert_equal response[2].body, ["<html></html>"]
     assert_equal response[2].status, 301
-    assert_equal( { 'Content-Length' => '13'}, response[2].headers )
+    assert_equal( { 'location' => 'http://google.com', 'Content-Length' => '13'}, response[2].headers )
   end
 
 
