@@ -125,19 +125,29 @@ module Rack
       is_requesting_prerendered_page = true if Rack::Utils.parse_query(request.query_string).has_key?('_escaped_fragment_')
 
       # if whitelist exists and path is not whitelisted...don't prerender
-      return false if @options[:whitelist].is_a?(Array) && @options[:whitelist].all? { |whitelisted| !Regexp.new(whitelisted).match(request.fullpath) }
+      return false if @options[:whitelist].is_a?(Array) && @options[:whitelist].all? do |whitelisted|
+        if whitelisted.is_a?(Regexp)
+          !whitelisted.match(request.fullpath)
+        else
+          whitelisted != request.fullpath;
+        end
+      end
 
       # if blacklist exists and path is blacklisted(url or referer)...don't prerender
-      if @options[:blacklist].is_a?(Array) && @options[:blacklist].any? { |blacklisted|
+      if @options[:blacklist].is_a?(Array) && @options[:blacklist].any? do |blacklisted|
           blacklistedUrl = false
           blacklistedReferer = false
-          regex = Regexp.new(blacklisted)
 
-          blacklistedUrl = !!regex.match(request.fullpath)
-          blacklistedReferer = !!regex.match(request.referer) if request.referer
+          if blacklisted.is_a?(Regexp)
+            blacklistedUrl = !!blacklisted.match(request.fullpath)
+            blacklistedReferer = !!blacklisted.match(request.referer) if request.referer
+          else
+            blacklistedUrl = blacklisted == request.fullpath
+            blacklistedReferer = request.referer && blacklisted == request.referer
+          end
 
           blacklistedUrl || blacklistedReferer
-        }
+        end
         return false
       end
 

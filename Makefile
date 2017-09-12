@@ -1,5 +1,5 @@
 build:
 	gem build prerendercloud.gemspec
 
-publish:
+publish: build
 	gem push $(shell ls -r *.gem | head -1)

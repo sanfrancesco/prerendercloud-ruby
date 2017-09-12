@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "prerendercloud"
-  spec.version       = "0.1.1"
+  spec.version       = "0.2.0"
   spec.authors       = ["Jonathan Otto"]
   spec.email         = ["support@prerender.cloud"]
   spec.description   = %q{Rack middleware to server-side render your JavaScript apps by prerender.cloud}

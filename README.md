@@ -37,3 +37,23 @@ but it's here if you want it:
 ```ruby
 config.middleware.use Rack::Prerendercloud, bots_only: true
 ```
+
+### Blacklist
+
+Prevent certain paths from being prerendered (e.g. JSON API endpoints)
+
+Pass an array of Regexps or Strings.
+
+```ruby
+config.middleware.use Rack::Prerender, blacklist: [/^\/api/, '/housing_prices.json']
+```
+
+### Whitelist
+
+Only allow certain paths to be prerendered
+
+Pass an array of Regexps or Strings.
+
+```ruby
+config.middleware.use Rack::Prerender, whitelist: [/^\/users/, '/ips-v4']
+```
