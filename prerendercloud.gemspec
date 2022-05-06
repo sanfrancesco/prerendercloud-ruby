@@ -4,9 +4,9 @@ Gem::Specification.new do |spec|
   spec.name          = "prerendercloud"
   spec.version       = "0.2.0"
   spec.authors       = ["Jonathan Otto"]
-  spec.email         = ["support@prerender.cloud"]
-  spec.description   = %q{Rack middleware to server-side render your JavaScript apps by prerender.cloud}
-  spec.summary       = %q{Rack middleware to server-side render your JavaScript apps by prerender.cloud}
+  spec.email         = ["support@headless-render-api.com"]
+  spec.description   = %q{Rack middleware to server-side render your JavaScript apps by headless-render-api.com}
+  spec.summary       = %q{Rack middleware to server-side render your JavaScript apps by headless-render-api.com}
   spec.homepage      = "https://github.com/sanfrancesco/prerendercloud-ruby"
   spec.license       = "MIT"
 

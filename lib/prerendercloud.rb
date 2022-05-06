@@ -6,7 +6,7 @@ module Rack
     class << self
 
       def header_whitelist
-         # preserve (and send to client) these headers from service.prerender.cloud
+         # preserve (and send to client) these headers from service.headless-render-api.com
          # which originally came from the origin server
         return [
           "vary",
@@ -225,7 +225,7 @@ module Rack
 
 
     def get_prerender_service_url
-      @options[:prerender_service_url] || ENV['PRERENDER_SERVICE_URL'] || 'http://service.prerender.cloud/'
+      @options[:prerender_service_url] || ENV['PRERENDER_SERVICE_URL'] || 'http://service.headless-render-api.com/'
     end
 
 
